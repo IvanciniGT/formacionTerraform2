@@ -18,6 +18,9 @@ resource "docker_container" "contenedor" {
     name  = "${var.nombre}"
     image = docker_image.imagen.latest 
     
+    command = var.comando 
+    // CONDICION ? VALOR SI SE CUMPLE : VALOR SI NO SE CUMPLE
+    
     env   = var.variables_entorno
     
     dynamic "ports" {

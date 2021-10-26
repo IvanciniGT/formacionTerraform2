@@ -46,3 +46,10 @@ variable "variables_entorno" {
         "VARIABLE3=VALOR3" 
     ] 
 }
+
+
+variable "comando" {
+    type        = list(string)
+    description = "Comando para ejecutar en el contenedor"
+    default = null
+}
