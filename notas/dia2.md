@@ -50,3 +50,11 @@ entorno environment
 443 https
 
 command
+
+
+
+
+9200    ->     TEXTO ----> "9200"
+true    ->     TEXTO ----> "true"
+"9200"  ->     number ----> 9200
+"true"  ->     bool   ----> true
