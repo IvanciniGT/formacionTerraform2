@@ -48,3 +48,5 @@ entorno environment
 
 80
 443 https
+
+command
