@@ -10,7 +10,7 @@ provider "docker" {
 }
 
 resource "docker_container" "contenedor" {
-    name  = "${var.nombre}-${count.index}"
+    name  = "${var.nombre}"
     image = docker_image.imagen.latest 
 }
 
