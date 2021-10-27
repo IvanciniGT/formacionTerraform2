@@ -2,6 +2,9 @@ terraform {
     required_providers {
         docker = {
             source = "kreuzwerker/docker" 
+        }
+        null = {
+            source = "hashicorp/null" 
         }             
     }
 }
@@ -9,12 +12,12 @@ terraform {
 provider "docker" {
 }
 
-resource "docker_image" "imagen" {
-    name = "${var.software}:${var.tag}"
+provider "null" {
 }
 
 resource "docker_container" "contenedor" {
-    name  = "${var.nombre}"
+    count = 4
+    name  = "${var.nombre}-${count.index}"
     image = docker_image.imagen.latest 
     
     provisioner "local-exec" {
@@ -45,4 +48,40 @@ resource "docker_container" "contenedor" {
                  ]
     }
     
+    provisioner "file" {  // Esto copia archivos, no ejecuta nada
+        source      = "main.tf"
+        destination = "/tmp/main.tf"
+    }
+    
+    provisioner "remote-exec" {
+        // Copia el script y lo ejecuta
+        script      = "programa.sh"
+    }
+    
+    provisioner "file" {  // Esto copia archivos, no ejecuta nada
+        source      = "programa.sh"
+        destination = "programita.sh"
+        when = destroy    
+    }
+    
+    provisioner "remote-exec" {
+        inline      = ["echo ESTOY DESTRUYENDO","chmod +x programita.sh",
+                        "./programita.sh"]
+        when = destroy    
+    }
+}
+
+resource "docker_image" "imagen" {
+    name = "${var.software}:${var.tag}"
+}
+
+resource "null_resource" "ejecutor" {
+    triggers = {
+        mi_triguercito = join("",docker_container.contenedor.*.ip_address)
+        // Esto monta una cadena de dependencia de recuros.
+        // Este recurso no se ejecuta hasta que se ha ejecutado la imagen
+    }
+    provisioner "local-exec" {
+        command = "echo Arranco el cluster"
+    }
 }
