@@ -4,3 +4,6 @@ output "direccion_ip_apache" {
 output "direccion_ip_nginx" {
     value = module.nginx.direccion_ip
 }
+output "id_nginx" {
+    value = module.nginx.id
+}
