@@ -6,8 +6,8 @@ terraform {
     }
 }
 
-provider "docker" {
-}
+//provider "docker" {
+//}
 
 resource "docker_container" "contenedor" {
     name  = "${var.nombre}"
