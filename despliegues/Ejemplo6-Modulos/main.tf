@@ -23,4 +23,10 @@ module "apache" {
     source      ="./contenedor"
     software    = "httpd"
     nombre      = "mi-contenedor-apache"
+    puertos     = [
+        {
+            interno = 80
+            externo = 8009
+        }
+    ]
 }

@@ -67,9 +67,4 @@ tf.state
 
 1º Permitir configurar los puertos que deben exponerse
 2º Generar un output con el id del contenedor
-    
-    
-                    (estado)
-main.tf (AWS) --> terraform ---> provider (AWS) ---> comando aws ---> AWS (CLOUD)
-                  declarativo (quiero)               imperativo (ordenes)
-                  ansible                            bash
+
