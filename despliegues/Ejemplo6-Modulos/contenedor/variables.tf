@@ -16,3 +16,10 @@ variable "nombre" {
     type        = string
     description = "Nombre del contenedor que se instalará"
 }
+
+
+variable "puertos" {
+    description = "Puertos del contenedor que se expondrá"
+    type        = list(map(number))
+    //default     = [ ]
+}

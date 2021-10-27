@@ -63,3 +63,7 @@ TERRAFORM ---> Hablar con GCP
           < ----   Los datos del maquina (IP)
 Me lo apunto... 
 tf.state
+
+
+1º Permitir configurar los puertos que deben exponerse
+2º Generar un output con el id del contenedor

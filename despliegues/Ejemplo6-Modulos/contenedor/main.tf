@@ -9,11 +9,22 @@ terraform {
 //provider "docker" {
 //}
 
+resource "docker_image" "imagen" {
+    name = "${var.software}:${var.tag}"
+}
+
+
 resource "docker_container" "contenedor" {
     name  = "${var.nombre}"
     image = docker_image.imagen.latest 
-}
 
-resource "docker_image" "imagen" {
-    name = "${var.software}:${var.tag}"
+    dynamic "ports" {
+        for_each = var.puertos // variable lista
+        iterator = puerto
+        content {
+            internal = puerto.value["interno"]
+            external = puerto.value["externo"]
+        }
+    }
+    
 }
