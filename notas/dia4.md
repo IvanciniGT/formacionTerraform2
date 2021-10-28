@@ -5,3 +5,13 @@ Coleccion archivos  --> Terraform --> provider --> cli cloud ---> cloud
     ...
     ...
     
+    
+terraform -> playbook ansible
+playbook ansible -> terraform
+
+Un intermediario (orquestador)
+
+ansible tower - terraform
+
+cli 
+ansible engine - terraform
